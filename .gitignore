@@ -1,1 +1,13 @@
-.venv/
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / OSX
+__pycache__/
+.DS_Store

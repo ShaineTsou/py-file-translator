@@ -5,6 +5,9 @@ import sys
 
 from translate import Translator
 
+# TODO: Create a constants for all available two-letter ISO language codes
+
+# TODO: Separation of concerns: (1) Handle sys arguments (2) Handle reading file (3) Handle writing new file
 try:
     text_file_path = sys.argv[1]
     to_lang = sys.argv[2]

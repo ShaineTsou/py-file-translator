@@ -37,16 +37,21 @@ def get_content(text_file_path):
         print(f"Error: {err}")
 
 
-try:
-    text_file_path, to_lang = get_sys_args()
-    content = get_content(text_file_path)
+def main():
+    try:
+        text_file_path, to_lang = get_sys_args()
+        content = get_content(text_file_path)
 
-    translator = Translator(to_lang=to_lang)
-    translation = translator.translate(content)
+        translator = Translator(to_lang=to_lang)
+        translation = translator.translate(content)
 
-    # TODO: Write translated content into a new file
-    print(translation)
-except TypeError:
-    print(SYS_ARGS_ERR_MSG)
-except Exception as err:
-    print(f"Error: {err}")
+        # TODO: Write translated content into a new file
+        print(translation)
+    except TypeError:
+        print(SYS_ARGS_ERR_MSG)
+    except Exception as err:
+        print(f"Error: {err}")
+
+
+if __name__ == "__main__":
+    main()

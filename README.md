@@ -1,6 +1,6 @@
 # Text File Translator
 
-A translator that takes a text file and translates the content to the desired language.
+A translator that takes a text file and translates the content to the target language.
 
 This project uses the [translate](https://pypi.org/project/translate/) Python module.
 

@@ -8,8 +8,6 @@ from pathlib import Path
 from translate import Translator
 from translate.exceptions import TranslationError
 
-# TODO: Create a constants for all available two-letter ISO language codes
-
 
 def get_sys_args():
     text_file_path = sys.argv[1]
@@ -74,7 +72,7 @@ def main():
         create_translation_file(translation, text_file_path, to_lang)
     except FileNotFoundError, IndexError, TypeError:
         print(
-            "Error: Please provide text file path and desired language. Usage: python3 main.py [text_file_path] [to_lang]"
+            "Error: Please provide text file path and target language. Usage: python3 main.py [text_file_path] [to_lang]"
         )
     except TranslationError as err:
         print(f"Error: {err}")

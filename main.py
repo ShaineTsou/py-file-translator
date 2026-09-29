@@ -7,10 +7,25 @@ from translate import Translator
 
 # TODO: Create a constants for all available two-letter ISO language codes
 
-# TODO: Separation of concerns: (1) Handle sys arguments (2) Handle reading file (3) Handle writing new file
+# TODO: Separation of concerns: (2) Handle reading file (3) Handle writing new file
+
+SYS_ARGS_ERR_MSG = "Error: Please provide text file path and desired language. Usage: python3 main.py [text_file_path] [to_lang]"
+
+
+def get_sys_args():
+    try:
+        text_file_path = sys.argv[1]
+        to_lang = sys.argv[2]
+
+        return text_file_path, to_lang
+    except IndexError:
+        print(SYS_ARGS_ERR_MSG)
+    except Exception as err:
+        print(f"Error: {err}")
+
+
 try:
-    text_file_path = sys.argv[1]
-    to_lang = sys.argv[2]
+    text_file_path, to_lang = get_sys_args()
 
     translator = Translator(to_lang=to_lang)
 
@@ -21,7 +36,7 @@ try:
 
     # TODO: Write translated content into a new file
     print(translation)
-
-# TODO: Error handling
+except TypeError:
+    print(SYS_ARGS_ERR_MSG)
 except Exception as err:
-    print(err)
+    print(f"Error: {err}")

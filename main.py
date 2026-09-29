@@ -4,37 +4,26 @@
 import sys
 
 from translate import Translator
+from translate.exceptions import TranslationError
 
 # TODO: Create a constants for all available two-letter ISO language codes
 
 # TODO: Separation of concerns: (2) Handle reading file (3) Handle writing new file
 
-SYS_ARGS_ERR_MSG = "Error: Please provide text file path and desired language. Usage: python3 main.py [text_file_path] [to_lang]"
-
 
 def get_sys_args():
-    try:
-        text_file_path = sys.argv[1]
-        to_lang = sys.argv[2]
+    text_file_path = sys.argv[1]
+    to_lang = sys.argv[2]
 
-        return text_file_path, to_lang
-    except IndexError:
-        print(SYS_ARGS_ERR_MSG)
-    except Exception as err:
-        print(f"Error: {err}")
+    return text_file_path, to_lang
 
 
 def get_content(text_file_path):
     if not text_file_path:
         return
 
-    try:
-        with open(text_file_path, mode="r") as file:
-            return file.read()
-    except FileNotFoundError:
-        print(SYS_ARGS_ERR_MSG)
-    except Exception as err:
-        print(f"Error: {err}")
+    with open(text_file_path, mode="r") as file:
+        return file.read()
 
 
 def get_translation(content, to_lang):
@@ -57,8 +46,12 @@ def main():
             translation = get_translation(content, to_lang)
             # TODO: Write translated content into a new file
             print(translation)
-    except TypeError:
-        print(SYS_ARGS_ERR_MSG)
+    except FileNotFoundError, IndexError, TypeError:
+        print(
+            "Error: Please provide text file path and desired language. Usage: python3 main.py [text_file_path] [to_lang]"
+        )
+    except TranslationError as err:
+        print(f"Error: {err}")
     except Exception as err:
         print(f"Error: {err}")
 
